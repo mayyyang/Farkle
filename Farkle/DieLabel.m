@@ -14,6 +14,7 @@
 - (void)roll
 {
     int randomNumber = arc4random_uniform(6)+1;
+    [self.delegate dieValueRolled:randomNumber];
     
 }
 
@@ -22,8 +23,14 @@
 
 -(IBAction)onTapped:(UITapGestureRecognizer *)sender
 {
-    UILabel *clickedLabel = sender.view;
-    NSLog(@"%ld", (long)clickedLabel.tag);
+//    UILabel *clickedLabel = sender.view;
+//    NSLog(@"%ld", (long)clickedLabel.tag);
+
+    
+    
+    //When Label is clicked, change background Color to Red
+    sender.view.backgroundColor = [UIColor redColor];
+    
     
 }
 @end
