@@ -14,6 +14,7 @@
 		FB5B404A1A0188E300467E7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB5B40491A0188E300467E7E /* Images.xcassets */; };
 		FB5B404D1A0188E300467E7E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FB5B404B1A0188E300467E7E /* LaunchScreen.xib */; };
 		FB5B40591A0188E300467E7E /* FarkleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5B40581A0188E300467E7E /* FarkleTests.m */; };
+		FB5B40641A018AD200467E7E /* DieLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FB5B40631A018AD200467E7E /* DieLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		FB5B40521A0188E300467E7E /* FarkleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FarkleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB5B40571A0188E300467E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FB5B40581A0188E300467E7E /* FarkleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FarkleTests.m; sourceTree = "<group>"; };
+		FB5B40621A018AD200467E7E /* DieLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DieLabel.h; sourceTree = "<group>"; };
+		FB5B40631A018AD200467E7E /* DieLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DieLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 				FB5B40431A0188E300467E7E /* ViewController.h */,
 				FB5B40441A0188E300467E7E /* ViewController.m */,
 				FB5B40461A0188E300467E7E /* Main.storyboard */,
+				FB5B40651A018ADA00467E7E /* Model */,
 				FB5B40491A0188E300467E7E /* Images.xcassets */,
 				FB5B404B1A0188E300467E7E /* LaunchScreen.xib */,
 				FB5B403C1A0188E300467E7E /* Supporting Files */,
@@ -117,6 +121,15 @@
 				FB5B40571A0188E300467E7E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB5B40651A018ADA00467E7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FB5B40621A018AD200467E7E /* DieLabel.h */,
+				FB5B40631A018AD200467E7E /* DieLabel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +235,7 @@
 				FB5B40451A0188E300467E7E /* ViewController.m in Sources */,
 				FB5B40421A0188E300467E7E /* AppDelegate.m in Sources */,
 				FB5B403F1A0188E300467E7E /* main.m in Sources */,
+				FB5B40641A018AD200467E7E /* DieLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

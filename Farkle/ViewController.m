@@ -7,8 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "DieLabel.h"
 
 @interface ViewController ()
+@property DieLabel *myDie;
+
+@property (strong, nonatomic) IBOutletCollection(DieLabel) NSArray *labelCollection;
 
 @end
 
@@ -16,12 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    [self.myDie roll];
+    int randomNumber = arc4random_uniform(6)+1;
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 @end
