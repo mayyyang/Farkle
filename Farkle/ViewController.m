@@ -23,6 +23,7 @@
 @property BOOL playerOneTurn;
 @property (weak, nonatomic) IBOutlet UIButton *rollButton;
 @property (weak, nonatomic) IBOutlet UILabel *farkleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *bankButton;
 
 @end
 
@@ -32,12 +33,14 @@
     [super viewDidLoad];
     self.playerOneTurn = YES;
     self.rollButtonPressed = YES;
+    self.bankButton.enabled = NO;
     self.multiplierArray = @[@1000, @200, @300, @400, @500, @600];
     for(DieLabel *label in self.labelCollection){
         label.delegate = self;
         label.backgroundColor = [UIColor greenColor];
         label.pressedOnce = NO;
         label.heldMoreThanOnce = NO;
+        label.userInteractionEnabled = NO;
     }
     //    [self.myDie roll];
     //    int randomNumber = arc4random_uniform(6)+1;
@@ -55,9 +58,16 @@
     
 }
 - (IBAction)onRollButtonPressed:(UIButton *)sender {
+
+    for(DieLabel *label in self.labelCollection){
+        label.userInteractionEnabled = YES;
+    }
+
+
     if(self.rollButtonPressed){
         for(DieLabel *label in self.labelCollection)
         {
+
             [label roll];
             label.text = [NSString stringWithFormat:@"%d", self.dieValueReturned];
         }
@@ -74,10 +84,15 @@
         }
     }
     sender.enabled = NO;
+    self.bankButton.enabled = YES;
 }
 
 - (IBAction)bankScoreButton:(UIButton *)sender {
     self.rollButton.enabled = YES;
+    self.bankButton.enabled = NO;
+    for(DieLabel *label in self.labelCollection){
+        label.userInteractionEnabled = NO;
+    }
     BOOL allRed = NO;
     //How to score after Bank Score Button has been pressed.
     self.countArray = [@[] mutableCopy];
@@ -181,8 +196,9 @@
         NSLog(@"%@", self.countArray);
     }
 
-    if(allRed){        [self resetAllValues];
-        self.playerOneTurn = !self.playerOneTurn;}
+    if(allRed && finalValue != 0){        [self resetAllValues];
+        self.playerOneTurn = !self.playerOneTurn;
+    }
 }
 
 - (void)increaseValue:(int)value{
@@ -197,15 +213,17 @@
 }
 
 - (void)resetAllValues{
+    self.bankButton.enabled = NO;
     self.rollButton.enabled = YES;
     self.farkleLabel.text =@"::::::::::::";
     for(DieLabel *label in self.labelCollection){
-        int random = arc4random_uniform(6)+1;
+//        int random = arc4random_uniform(6)+1;
         [self rollButtonPressed];
+        label.userInteractionEnabled = NO;
         label.backgroundColor = [UIColor greenColor];
         label.pressedOnce = NO;
         label.heldMoreThanOnce = NO;
-        label.text = [NSString stringWithFormat:@"%d", random];
+        label.text = [NSString stringWithFormat:@"-"];
     }
 
 }
