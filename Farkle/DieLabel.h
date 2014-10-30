@@ -16,6 +16,8 @@
 
 @interface DieLabel : UILabel
 @property id <DieLabelDelegate> delegate;
+@property BOOL pressedOnce;
+@property BOOL heldMoreThanOnce;
 
 
 - (void)roll;

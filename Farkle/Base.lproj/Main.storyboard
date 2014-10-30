@@ -77,7 +77,7 @@
                                 </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2w8-Yl-QSw">
-                                <rect key="frame" x="16" y="108" width="45" height="21"/>
+                                <rect key="frame" x="16" y="108" width="72" height="31"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -100,12 +100,26 @@
                                     <action selector="onRollButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="HBv-d4-z8y"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Zr-LI-wTG">
+                                <rect key="frame" x="17" y="164" width="94" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player Turn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Hi-ce-qGl">
+                                <rect key="frame" x="31" y="254" width="86" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="69z-dV-qd8"/>
                     <connections>
+                        <outlet property="playerTurn" destination="8Hi-ce-qGl" id="RRZ-dR-BJO"/>
                         <outlet property="userScore" destination="2w8-Yl-QSw" id="Qyj-Up-UPq"/>
+                        <outlet property="userScore2" destination="9Zr-LI-wTG" id="j3m-gr-f3F"/>
                         <outletCollection property="labelCollection" destination="0we-0J-zlU" id="wv7-Om-cVO"/>
                         <outletCollection property="labelCollection" destination="mir-uO-4mg" id="1C8-9T-ZmQ"/>
                         <outletCollection property="labelCollection" destination="Q80-hc-8IS" id="WMr-Lm-2Kl"/>
