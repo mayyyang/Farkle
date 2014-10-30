@@ -14,7 +14,7 @@
 @property int dieValueReturned;
 @property (weak, nonatomic) IBOutlet UILabel *userScore;
 @property NSMutableArray *countArray;
-
+@property NSArray *multiplierArray;
 @property (strong, nonatomic) IBOutletCollection(DieLabel) NSArray *labelCollection;
 @property BOOL rollButtonPressed;
 
@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.rollButtonPressed = YES;
+    self.multiplierArray = @[@1000, @200, @300, @400, @500, @600];
     for(DieLabel *label in self.labelCollection){
         label.delegate = self;
         label.backgroundColor = [UIColor greenColor];
@@ -94,6 +95,15 @@
         //now divide everything by three and multiply it by its value
         
     }
+    int finalValue = 0;
+    
+    for(int i=0; i<6; i++){
+        int initialValue = [self.countArray[i] intValue];
+        int multiplierValue = [self.multiplierArray[i] intValue];
+        int valuePerNumber = initialValue / 3 * multiplierValue;
+        finalValue = valuePerNumber + finalValue;
+    }
+    self.userScore.text = [NSString stringWithFormat:@"%d", finalValue];
 //    NSLog(@"hi");
 //    for(NSNumber *number in self.countArray){
 //        NSLog(@"%d", [number intValue]);
