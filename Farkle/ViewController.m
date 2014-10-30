@@ -21,6 +21,8 @@
 @property int playerScore;
 @property int playerTwoScore;
 @property BOOL playerOneTurn;
+@property (weak, nonatomic) IBOutlet UIButton *rollButton;
+@property (weak, nonatomic) IBOutlet UILabel *farkleLabel;
 
 @end
 
@@ -52,7 +54,7 @@
     self.dieValueReturned = value;
     
 }
-- (IBAction)onRollButtonPressed:(id)sender {
+- (IBAction)onRollButtonPressed:(UIButton *)sender {
     if(self.rollButtonPressed){
         for(DieLabel *label in self.labelCollection)
         {
@@ -71,14 +73,24 @@
             label.pressedOnce = YES;
         }
     }
+    sender.enabled = NO;
 }
 
 - (IBAction)bankScoreButton:(UIButton *)sender {
+    self.rollButton.enabled = YES;
+    BOOL allRed = NO;
     //How to score after Bank Score Button has been pressed.
     self.countArray = [@[] mutableCopy];
     for(int i=0; i<6; i++)
         [self.countArray addObject:[NSNumber numberWithInteger:0]];
     //if there are 3 1's
+    for(DieLabel *label in self.labelCollection){
+        if(label.backgroundColor == [UIColor greenColor]){
+            allRed = NO;
+            break;
+        }
+        else{allRed = YES;}
+    }
     for(DieLabel *label in self.labelCollection)
     {
         if(label.backgroundColor == [UIColor redColor] && label.heldMoreThanOnce == NO){
@@ -144,22 +156,33 @@
     if(!self.playerOneTurn)
         self.playerTwoScore = self.playerTwoScore + finalValue;
     
-    self.playerTurn.text = [NSString stringWithFormat:@"%d",self.playerScore];
-    self.userScore.text = [NSString stringWithFormat:@"%d", finalValue];
+    self.playerTurn.text = [NSString stringWithFormat:@"Player 1 Score: %d",self.playerScore];
+    self.userScore.text = [NSString stringWithFormat:@"Turn Score: %d", finalValue];
+    self.userScore2.text = [NSString stringWithFormat:@"Player 2 Score: %d", self.playerTwoScore];
+    
+    
     if(finalValue == 0){
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"FARKLEEEEEEE" message:@"Your move is over." preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:YES completion:nil];
+        self.farkleLabel.text = @"FARKLEEEEED";
         NSLog(@"FARKLEEEE!"); //TURN OVER
-//        [self resetAllValues];
-//        self.playerOneTurn = NO;
-//    }
-//    if(checkValue == 2){
+        [self resetAllValues];
+        self.playerOneTurn = !self.playerOneTurn;
+    }
+    if(checkValue == 2){
         NSLog(@"Hot streak!");
-//        [self resetAllValues];
-//    }//RESTART TURN
-    //    NSLog(@"hi");
-    //    for(NSNumber *number in self.countArray){
-    //        NSLog(@"%d", [number intValue]);
-    NSLog(@"%@", self.countArray);
-}
+        [self resetAllValues];
+    }//RESTART TURN
+    NSLog(@"hi");
+    for(NSNumber *number in self.countArray){
+        NSLog(@"%d", [number intValue]);
+        NSLog(@"%@", self.countArray);
+    }
+
+    if(allRed){        [self resetAllValues];
+        self.playerOneTurn = !self.playerOneTurn;}
 }
 
 - (void)increaseValue:(int)value{
@@ -174,12 +197,15 @@
 }
 
 - (void)resetAllValues{
-
+    self.rollButton.enabled = YES;
+    self.farkleLabel.text =@"::::::::::::";
     for(DieLabel *label in self.labelCollection){
-    
+        int random = arc4random_uniform(6)+1;
+        [self rollButtonPressed];
         label.backgroundColor = [UIColor greenColor];
         label.pressedOnce = NO;
         label.heldMoreThanOnce = NO;
+        label.text = [NSString stringWithFormat:@"%d", random];
     }
 
 }
